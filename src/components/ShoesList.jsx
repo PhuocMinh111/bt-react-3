@@ -10,7 +10,11 @@ export default class ShoesList extends Component {
         {data.map((item) => {
           return (
             <Col>
-              <Shoes shoes={item} />
+              <Shoes
+                key={item.id}
+                addToCart={this.props.addToCart}
+                shoes={item}
+              />
             </Col>
           );
         })}

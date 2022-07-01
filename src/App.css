@@ -40,3 +40,9 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+#cart-number {
+  background: var(--bs-green);
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}

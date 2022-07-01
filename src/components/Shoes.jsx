@@ -21,7 +21,7 @@ export default class Shoes extends Component {
           style={{ width: "4rem", fontWeight: "500", marginLeft: "auto" }}
           className="p-1 "
           variant="dark"
-          onClick={() => add(shoes.id)}
+          onClick={() => this.props.addToCart(shoes.id)}
         >
           add{" "}
           <span className="mt-1">
