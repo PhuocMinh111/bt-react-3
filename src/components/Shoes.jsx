@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { Button, Card } from "react-bootstrap";
 import { FaCartPlus } from "react-icons/fa";
+import { AppContext } from "../context/Context";
 export default class Shoes extends Component {
   render() {
     const { shoes, add } = this.props;
+
     return (
       <Card
         key={shoes.id}

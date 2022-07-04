@@ -5,26 +5,42 @@ import { Col, Modal, Button, Container, Row, Nav } from "react-bootstrap";
 import ShoesList from "./components/ShoesList";
 import data from "./data/data.json";
 import { Accordion } from "react-bootstrap";
+import Cart from "./components/Cart";
 class App extends React.Component {
-  cart = [];
+  state = {
+    cart: [],
+  };
   addToCart = (id) => {
     const prod = data.find((item) => item.id == id);
-    console.log(prod);
-    this.cart.forEach((item) => {
-      if (item.prod) {
-        if (item.prod.id == id) {
-          this.cart[item] = { ...item, quantity: item.quantity + 1 };
-        }
-        this.cart.push({
-          prod: prod,
-          quantity: 1,
-        });
-      }
+    let isAdd = false;
+    this.state.cart.forEach((item) => {
+      if (item.id == id) isAdd = true;
     });
-    console.log(this.cart);
+    console.log(isAdd);
+    if (isAdd) {
+      this.state.cart = this.state.cart.filter((item) => {
+        if (item.id != id) return item;
+        return { ...item, quantity: ++item.quantity };
+      });
+      this.setState({
+        cart: [...this.state.cart],
+      });
+    }
+
+    if (!isAdd) {
+      this.state.cart.push({ ...prod, quantity: 1 });
+      this.setState({
+        cart: [...this.state.cart],
+      });
+    }
+    console.log(this.state.cart);
   };
 
   render() {
+    const cartNum = this.state.cart.reduce((_, item) => {
+      _ += item.quantity;
+      return _;
+    }, 0);
     return (
       <Container fluid="lg">
         <Container className="text-center p-4">
@@ -59,7 +75,7 @@ class App extends React.Component {
                   aria-controls="v-pills-profile"
                   aria-selected="false"
                 >
-                  Cart ({9})
+                  Cart ({cartNum})
                 </a>
               </div>
             </Col>
@@ -72,6 +88,7 @@ class App extends React.Component {
                   aria-labelledby="v-pills-home-tab"
                 >
                   <ShoesList addToCart={this.addToCart} />
+                  {/* <ShoesList /> */}
                 </div>
                 <div
                   className="tab-pane fade"
@@ -80,6 +97,7 @@ class App extends React.Component {
                   aria-labelledby="v-pills-profile-tab"
                 >
                   cart
+                  <Cart cart={this.state.cart} />
                 </div>
               </div>
             </Col>
