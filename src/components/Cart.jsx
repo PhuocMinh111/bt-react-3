@@ -59,7 +59,12 @@ export default class Cart extends Component {
               className="d-flex w-100 mt-2 justify-content-end"
             >
               <button className="btn btn-success mr-3">checkout</button>
-              <button className=" btn btn-primary">clear cart</button>
+              <button
+                onClick={this.props.clearCart}
+                className=" btn btn-primary"
+              >
+                clear cart
+              </button>
             </div>
           )}
         </div>

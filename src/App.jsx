@@ -35,6 +35,10 @@ class App extends React.Component {
     }
     console.log(this.state.cart);
   };
+  clearCart = () => {
+    this.state.cart = [];
+    this.setState({ cart: this.state.cart });
+  };
 
   render() {
     const cartNum = this.state.cart.reduce((_, item) => {
@@ -96,7 +100,7 @@ class App extends React.Component {
                   role="tabpanel"
                   aria-labelledby="v-pills-profile-tab"
                 >
-                  <Cart cart={this.state.cart} />
+                  <Cart clearCart={this.clearCart} cart={this.state.cart} />
                 </div>
               </div>
             </Col>
