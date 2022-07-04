@@ -96,7 +96,6 @@ class App extends React.Component {
                   role="tabpanel"
                   aria-labelledby="v-pills-profile-tab"
                 >
-                  cart
                   <Cart cart={this.state.cart} />
                 </div>
               </div>

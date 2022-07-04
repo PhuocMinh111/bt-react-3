@@ -1,7 +1,6 @@
 import React, { Component, useContext } from "react";
 import { Button, Card } from "react-bootstrap";
 import { FaCartPlus } from "react-icons/fa";
-import { AppContext } from "../context/Context";
 export default class Shoes extends Component {
   render() {
     const { shoes, add } = this.props;
@@ -9,7 +8,7 @@ export default class Shoes extends Component {
     return (
       <Card
         key={shoes.id}
-        className="p-3"
+        className="p-3 mb-3"
         style={{ width: "15rem", height: "auto" }}
       >
         <Card.Img variant="top" src={shoes.image} />
